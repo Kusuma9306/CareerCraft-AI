@@ -2,6 +2,8 @@
 
 **Your strategic career command center** — discover careers, analyse skill gaps, get AI-powered recommendations, and track your job readiness, all in one place.
 
+ https://kusuma9306.github.io/CareerCraft-AI/
+
 ![Status](https://img.shields.io/badge/status-active-9B7BFF)
 ![Frontend](https://img.shields.io/badge/frontend-HTML%20%7C%20CSS%20%7C%20JS-22D3EE)
 

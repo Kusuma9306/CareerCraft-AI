@@ -48,7 +48,7 @@ Since this is a fully frontend, static project with no build step, you can run i
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/<your-username>/careercraft.git
+   git clone https://github.com/<your-username>/CareerCraft-AI.git
    ```
 2. Navigate into the project folder:
    ```bash

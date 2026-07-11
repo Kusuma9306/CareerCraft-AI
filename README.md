@@ -66,19 +66,20 @@ No installation, dependencies, or backend setup required — everything runs cli
 ## 📸 Screenshots
 
 ### Login Page
-![Login](login.png)
+![Login](images/login.png)
 
 ### Home Page
-![Home](home.png)
+![Home](images/home.png)
 
 ### Explore Page
-![Explore](explore.png)
+![Explore](images/explore.png)
 
 ### Dashboard
-![Dashboard](dashboard.png)
+![Dashboard](images/dashboard.png)
 
 ### Profile Page
-![Profile](profile.png)
+![Profile](images/profile.png)
+
 ## Pages
 
 | Page | Description |

@@ -64,19 +64,19 @@ No installation, dependencies, or backend setup required — everything runs cli
 ## Screenshots
 
 ### Login Page
-![Login](images/login.png)
+![login](images/login.png)
 
 ### Home Page
-![Home](images/home.png)
+![home](images/home.png)
 
 ### Explore Page
-![Explore](images/explore.png)
+![explore](images/explore.png)
 
 ### Dashboard
-![Dashboard](images/dashboard.png)
+![dashboard](images/dashboard.png)
 
 ### Profile Page
-![Profile](images/profile.png)
+![profile](images/profile.png)
 
 ## Pages
 

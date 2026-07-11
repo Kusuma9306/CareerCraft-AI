@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>CareerCraft — Your strategic career command center</title>
+<meta name="description" content="Discover careers, analyse skill gaps, get AI recommendations, and track your readiness — all in one place."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.19.0/dist/tabler-icons.min.css"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+
+<!-- TOPNAV -->
+<nav id="topnav">
+  <div class="nav-brand" onclick="goPage('home')">
+    <div class="nav-brand-icon">CC</div>
+    <span class="nav-brand-text">Career<span>Craft</span></span>
+  </div>
+  <div class="nav-links">
+    <button class="nav-link active" onclick="goPage('home')">Home</button>
+    <button class="nav-link" onclick="goPage('explore')">Explore</button>
+    <button class="nav-link" onclick="goPage('dashboard')">Dashboard</button>
+    <button class="nav-link" onclick="goPage('profile')">Profile</button>
+  </div>
+  <div class="nav-right">
+    <button class="btn btn-ghost btn-sm" onclick="goPage('explore');switchTool('chat')"><i class="ti ti-robot"></i> AI Mentor</button>
+    <div class="nav-avatar" onclick="goPage('profile')" title="Profile"></div>
+    <button class="btn btn-ghost btn-sm" onclick="logout()" title="Sign out"><i class="ti ti-logout"></i></button>
+  </div>
+</nav>
+
+<div id="toast"></div>
+
+<!-- HOME -->
+<div class="page active" id="page-home">
+  <section class="hero">
+    <div class="hero-glow"></div>
+    <h1>Your career, <span class="accent">strategically</span><br>charted from day one.</h1>
+    <p class="hero-sub">Discover your ideal career path, uncover skill gaps, get a personalised roadmap, and track every step toward job readiness — all in one place.</p>
+    <div class="hero-cta">
+      <button class="hero-cta-primary" onclick="goPage('explore');switchTool('quiz')"><i class="ti ti-bulb"></i> Take the career quiz</button>
+      <button class="hero-cta-sec" onclick="goPage('explore');switchTool('careers')"><i class="ti ti-compass"></i> Explore all careers</button>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><strong>20+</strong><span>Career paths</span></div>
+      <div class="hero-stat"><strong>150+</strong><span>Skills mapped</span></div>
+      <div class="hero-stat"><strong>80+</strong><span>Project ideas</span></div>
+      <div class="hero-stat"><strong>AI</strong><span>Powered mentor</span></div>
+    </div>
+  </section>
+
+  <section class="marquee-section">
+    <div class="marquee-track" id="marquee"></div>
+  </section>
+
+  <section class="features-strip">
+    <div class="container">
+      <div class="section-label">What's inside Explore</div>
+      <h2 class="section-title">Everything lives in one command center</h2>
+      <p class="section-sub">No scattered tabs. The Explore page gives you 8 powerful tools in a single focused workspace.</p>
+      <div class="features-grid">
+        <div class="feat-card v" onclick="goPage('explore');switchTool('careers')"><div class="feat-icon" style="background:var(--violet-soft);color:var(--violet)"><i class="ti ti-briefcase"></i></div><div class="feat-title">Career Explorer</div><div class="feat-desc">Browse 20+ in-demand career paths with skills, salaries, and roadmaps.</div></div>
+        <div class="feat-card t" onclick="goPage('explore');switchTool('analyser')"><div class="feat-icon" style="background:var(--teal-soft);color:var(--teal)"><i class="ti ti-chart-dots"></i></div><div class="feat-title">Skill Gap Analyser</div><div class="feat-desc">See exactly what skills you're missing between you and your target role.</div></div>
+        <div class="feat-card a" onclick="goPage('explore');switchTool('recommend')"><div class="feat-icon" style="background:var(--amber-soft);color:var(--amber)"><i class="ti ti-sparkles"></i></div><div class="feat-title">AI Recommendation</div><div class="feat-desc">Get smart career suggestions based on your interests and strengths.</div></div>
+        <div class="feat-card v" onclick="goPage('explore');switchTool('projects')"><div class="feat-icon" style="background:var(--violet-soft);color:var(--violet)"><i class="ti ti-code"></i></div><div class="feat-title">Project Ideas</div><div class="feat-desc">Curated projects for every difficulty level across all career paths.</div></div>
+        <div class="feat-card t" onclick="goPage('explore');switchTool('chat')"><div class="feat-icon" style="background:var(--teal-soft);color:var(--teal)"><i class="ti ti-robot"></i></div><div class="feat-title">AI Assistant</div><div class="feat-desc">Chat with Aria, your AI mentor, anytime for career guidance.</div></div>
+        <div class="feat-card a" onclick="goPage('explore');switchTool('quiz')"><div class="feat-icon" style="background:var(--amber-soft);color:var(--amber)"><i class="ti ti-help-circle"></i></div><div class="feat-title">Career Quiz</div><div class="feat-desc">8 questions to discover which careers match your personality and goals.</div></div>
+        <div class="feat-card v" onclick="goPage('explore');switchTool('saved')"><div class="feat-icon" style="background:var(--violet-soft);color:var(--violet)"><i class="ti ti-bookmark"></i></div><div class="feat-title">Saved Careers</div><div class="feat-desc">Bookmark careers and revisit your shortlist at any time.</div></div>
+        <div class="feat-card t" onclick="goPage('explore');switchTool('compare')"><div class="feat-icon" style="background:var(--teal-soft);color:var(--teal)"><i class="ti ti-arrows-diff"></i></div><div class="feat-title">Compare Careers</div><div class="feat-desc">Side-by-side analysis of skills, salary, demand and learning time.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="testimonials">
+    <div class="container">
+      <div class="section-label">Student stories</div>
+      <h2 class="section-title">Real students, real results</h2>
+      <div class="testi-grid">
+        <div class="testi-card"><div class="testi-stars">★★★★★</div><p class="testi-text">"I had zero clarity on what Data Scientists actually need. The Skill Gap Analyser pinpointed my exact gaps. I built 3 projects in 2 months and cracked my first internship interview."</p><div class="testi-author"><div class="testi-av" style="background:linear-gradient(135deg,#9B7BFF,#22D3EE)">PR</div><div><div class="testi-name">Priya Ramachandran</div><div class="testi-role">BCA Final Year · Chennai</div></div></div></div>
+        <div class="testi-card"><div class="testi-stars">★★★★★</div><p class="testi-text">"The Compare tool settled my Full Stack vs Cloud debate in 5 minutes. Aria (the AI mentor) explained every doubt I had. It's like having a senior dev as a friend."</p><div class="testi-author"><div class="testi-av" style="background:linear-gradient(135deg,#FF5C9B,#9B7BFF)">VK</div><div><div class="testi-name">Vikram Krishnan</div><div class="testi-role">B.Tech CSE · Coimbatore</div></div></div></div>
+        <div class="testi-card"><div class="testi-stars">★★★★★</div><p class="testi-text">"I switched from accounting to tech. The AI Recommendation tool suggested UI/UX — a path I'd never considered. Now I have a job offer. Couldn't be more grateful."</p><div class="testi-author"><div class="testi-av" style="background:linear-gradient(135deg,#22E0A0,#22D3EE)">SA</div><div><div class="testi-name">Sneha Agarwal</div><div class="testi-role">Career Changer · Bangalore</div></div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-banner">
+    <div class="container">
+      <h2>Start mapping your career today.</h2>
+      <p>Join thousands of students who replaced confusion with a clear plan.</p>
+      <button class="hero-cta-primary" onclick="goPage('explore');switchTool('careers')"><i class="ti ti-rocket"></i> Open Explore</button>
+    </div>
+  </section>
+
+  <footer><strong>CareerCraft</strong> · Intelligent career guidance for students · &copy; 2025</footer>
+</div>
+
+<!-- EXPLORE -->
+<div class="page" id="page-explore">
+  <div class="explore-sidebar">
+    <div class="sidebar-head"><h3>Explore Tools</h3></div>
+    <div class="sidebar-nav">
+      <button class="sidebar-item active" onclick="switchTool('careers')" data-tool="careers"><i class="ti ti-briefcase"></i> Careers</button>
+      <button class="sidebar-item" onclick="switchTool('analyser')" data-tool="analyser"><i class="ti ti-chart-dots"></i> Skill Analyser</button>
+      <button class="sidebar-item" onclick="switchTool('recommend')" data-tool="recommend"><i class="ti ti-sparkles"></i> AI Recommendation<span class="badge">AI</span></button>
+      <button class="sidebar-item" onclick="switchTool('projects')" data-tool="projects"><i class="ti ti-code"></i> Projects</button>
+      <div class="sidebar-divider"></div>
+      <button class="sidebar-item" onclick="switchTool('chat')" data-tool="chat"><i class="ti ti-robot"></i> AI Assistant<span class="badge">AI</span></button>
+      <button class="sidebar-item" onclick="switchTool('quiz')" data-tool="quiz"><i class="ti ti-help-circle"></i> Career Quiz</button>
+      <button class="sidebar-item" onclick="switchTool('saved')" data-tool="saved"><i class="ti ti-bookmark"></i> Saved Careers</button>
+      <button class="sidebar-item" onclick="switchTool('compare')" data-tool="compare"><i class="ti ti-arrows-diff"></i> Compare Careers</button>
+    </div>
+    <div class="sidebar-footer">
+      <button class="sidebar-export" onclick="exportPDF()"><i class="ti ti-file-download"></i> Export PDF Report</button>
+    </div>
+  </div>
+  <div class="explore-main">
+    <div class="tool-panel active" id="tool-careers">
+      <div class="tool-header"><div class="tool-title">Career Explorer</div><div class="tool-sub">Browse 20+ in-demand careers with skills, salaries, and learning roadmaps.</div></div>
+      <div class="search-bar">
+        <div class="search-input-wrap"><i class="ti ti-search"></i><input type="text" id="careerSearch" placeholder="Search careers or skills…" oninput="filterCareers()"/></div>
+        <button class="filter-pill on" onclick="setFilter('All',this)">All</button>
+        <button class="filter-pill" onclick="setFilter('Technology',this)">Tech</button>
+        <button class="filter-pill" onclick="setFilter('Data',this)">Data & AI</button>
+        <button class="filter-pill" onclick="setFilter('Design',this)">Design</button>
+        <button class="filter-pill" onclick="setFilter('Business',this)">Business</button>
+        <button class="filter-pill" onclick="setFilter('Security',this)">Security</button>
+      </div>
+      <div class="careers-grid" id="careersGrid"></div>
+    </div>
+
+    <div class="tool-panel" id="tool-analyser">
+      <div class="tool-header"><div class="tool-title">Skill Gap Analyser</div><div class="tool-sub">Select a career, tick the skills you have, and instantly see your gap.</div></div>
+      <div class="sa-step-card">
+        <div class="step-header"><div class="step-num">1</div><div class="step-label">Choose your target career</div></div>
+        <div class="career-selector" id="saPicker"></div>
+      </div>
+      <div class="sa-step-card" id="saStep2" style="display:none">
+        <div class="step-header"><div class="step-num">2</div><div class="step-label">Tick the skills you already know</div></div>
+        <div class="skill-checks" id="saChecks"></div>
+        <button class="btn btn-primary mt2" onclick="runGap()"><i class="ti ti-chart-bar"></i> Analyse my gap</button>
+      </div>
+      <div class="sa-step-card" id="saStep3" style="display:none">
+        <div class="step-header"><div class="step-num">3</div><div class="step-label">Your skill gap report</div></div>
+        <div id="saResults"></div>
+      </div>
+    </div>
+
+    <div class="tool-panel" id="tool-recommend">
+      <div class="tool-header"><div class="tool-title">AI Career Recommendation</div><div class="tool-sub">Tell us about yourself and we'll suggest the best-fit careers with reasons why.</div></div>
+      <div class="card" style="margin-bottom:1.25rem">
+        <div style="font-size:.9rem;font-weight:600;margin-bottom:1rem;font-family:'Space Grotesk',sans-serif;color:#fff">What describes you best? <span style="font-size:.8rem;font-weight:400;color:var(--muted)">(Select all that apply)</span></div>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:1.25rem" id="recPrefs">
+          <button class="filter-pill" onclick="togglePref(this,'math')">📐 Love maths & logic</button>
+          <button class="filter-pill" onclick="togglePref(this,'visual')">🎨 Creative & visual</button>
+          <button class="filter-pill" onclick="togglePref(this,'build')">⚙️ Love building things</button>
+          <button class="filter-pill" onclick="togglePref(this,'data')">📊 Enjoy analysing data</button>
+          <button class="filter-pill" onclick="togglePref(this,'people')">🤝 People & communication</button>
+          <button class="filter-pill" onclick="togglePref(this,'security')">🔒 Security & investigation</button>
+          <button class="filter-pill" onclick="togglePref(this,'automate')">🤖 AI & automation</button>
+          <button class="filter-pill" onclick="togglePref(this,'marketing')">📣 Marketing & growth</button>
+        </div>
+        <button class="btn btn-primary" onclick="generateRec()"><i class="ti ti-sparkles"></i> Generate recommendations</button>
+      </div>
+      <div id="recResults"></div>
+    </div>
+
+    <div class="tool-panel" id="tool-projects">
+      <div class="tool-header"><div class="tool-title">Project Ideas</div><div class="tool-sub">Handpicked projects to build skills and grow your portfolio.</div></div>
+      <div class="proj-filter">
+        <button class="filter-pill on" onclick="filterProj('all',this)">All</button>
+        <button class="filter-pill" onclick="filterProj('Beginner',this)">Beginner</button>
+        <button class="filter-pill" onclick="filterProj('Intermediate',this)">Intermediate</button>
+        <button class="filter-pill" onclick="filterProj('Advanced',this)">Advanced</button>
+        <button class="filter-pill" onclick="filterProj('Frontend',this)">Frontend</button>
+        <button class="filter-pill" onclick="filterProj('Backend',this)">Backend</button>
+        <button class="filter-pill" onclick="filterProj('Data',this)">Data & AI</button>
+      </div>
+      <div class="projects-grid" id="projectsGrid"></div>
+    </div>
+
+    <div class="tool-panel" id="tool-chat" style="height:calc(100vh - 62px);overflow:hidden">
+      <div class="chat-shell">
+        <div class="chat-top">
+          <div class="chat-av">🤖</div>
+          <div><div class="chat-name">Aria — AI Career Mentor</div><div class="chat-status">Online · Ask me anything about your career</div></div>
+        </div>
+        <div class="chat-msgs" id="chatMsgs">
+          <div class="cmsg ai"><div class="cbubble">Hey! I'm Aria, your AI career mentor 👋<br><br>I can help you understand career paths, required skills, learning timelines, salary expectations, project ideas — whatever you need. What's on your mind?</div><div class="ctime">Just now</div></div>
+        </div>
+        <div class="chat-suggestions" id="chatSugs">
+          <button class="chat-sug" onclick="sendSug(this)">What skills does a Data Scientist need?</button>
+          <button class="chat-sug" onclick="sendSug(this)">How long to become a Full Stack Developer?</button>
+          <button class="chat-sug" onclick="sendSug(this)">Best career for someone who loves design?</button>
+          <button class="chat-sug" onclick="sendSug(this)">What projects should I build for my portfolio?</button>
+        </div>
+        <div class="chat-input-row">
+          <input class="chat-inp" id="chatInp" placeholder="Ask Aria anything…" onkeydown="if(event.key==='Enter')sendChat()"/>
+          <button class="chat-send" onclick="sendChat()"><i class="ti ti-send"></i></button>
+        </div>
+      </div>
+    </div>
+
+    <div class="tool-panel" id="tool-quiz">
+      <div class="tool-header"><div class="tool-title">Career Discovery Quiz</div><div class="tool-sub">8 questions · 3 minutes · Personalised career matches at the end.</div></div>
+      <div id="quizWrap"></div>
+    </div>
+
+    <div class="tool-panel" id="tool-saved">
+      <div class="tool-header"><div class="tool-title">Saved Careers</div><div class="tool-sub">Your bookmarked careers for quick reference.</div></div>
+      <div id="savedGrid"></div>
+    </div>
+
+    <div class="tool-panel" id="tool-compare">
+      <div class="tool-header"><div class="tool-title">Compare Careers</div><div class="tool-sub">Select two careers for a detailed side-by-side breakdown.</div></div>
+      <div class="compare-selects">
+        <select id="cmp1" onchange="renderCompare()"><option value="">Select first career…</option></select>
+        <div class="vs-badge">vs</div>
+        <select id="cmp2" onchange="renderCompare()"><option value="">Select second career…</option></select>
+        <button class="btn btn-primary" onclick="renderCompare()"><i class="ti ti-arrows-diff"></i> Compare</button>
+      </div>
+      <div style="overflow-x:auto" id="cmpResult"></div>
+    </div>
+  </div>
+</div>
+
+<div class="career-detail" id="cdModal" onclick="if(event.target===this)closeCd()">
+  <div class="cd-modal" id="cdModalInner"></div>
+</div>
+
+<!-- DASHBOARD -->
+<div class="page" id="page-dashboard">
+  <div class="dash-wrap">
+    <div class="dash-header">
+      <div class="dash-greeting">
+        <h1>Welcome, <span id="dashGreetName">there</span> 👋</h1>
+        <p>You're on track for <span id="dashTrackCareer">your target career</span>. Keep the momentum going.</p>
+      </div>
+      <button class="btn btn-primary" onclick="exportPDF()"><i class="ti ti-file-download"></i> Export PDF report</button>
+    </div>
+    <div class="stat-row">
+      <div class="stat-tile" style="border-top:3px solid var(--violet)"><div class="st-label">Skills mastered</div><div class="st-value" style="color:var(--violet)" id="dashSkillsHave">0</div><div class="st-sub" id="dashSkillsSub">Run the gap analyser</div></div>
+      <div class="stat-tile" style="border-top:3px solid var(--teal)"><div class="st-label">Quiz matches</div><div class="st-value" style="color:var(--teal)" id="dashQuizCount">0</div><div class="st-sub" id="dashQuizSub">Take the discovery quiz</div></div>
+      <div class="stat-tile" style="border-top:3px solid var(--amber)"><div class="st-label">Activities logged</div><div class="st-value" style="color:var(--amber)" id="dashActCount">0</div><div class="st-sub">Recent actions</div></div>
+      <div class="stat-tile" style="border-top:3px solid var(--coral)"><div class="st-label">Saved careers</div><div class="st-value" style="color:var(--coral)" id="dashSaved">0</div><div class="st-sub">Explore more paths</div></div>
+    </div>
+    <div class="dash-grid">
+      <div>
+        <div class="d-card">
+          <div class="d-card-title">Skill progress <button class="btn btn-outline btn-sm" onclick="goPage('explore');switchTool('analyser')">Full analysis</button></div>
+          <div id="dashSkillProgress"><div style="text-align:center;padding:2rem;color:var(--muted);font-size:.88rem">Run the Skill Gap Analyser to see your progress here.</div></div>
+        </div>
+        <div class="d-card">
+          <div class="d-card-title">Saved careers</div>
+          <div id="dashSavedList"><div style="text-align:center;padding:1.5rem;color:var(--muted);font-size:.88rem">No saved careers yet. Bookmark some from the Careers tab.</div></div>
+        </div>
+      </div>
+      <div>
+        <div class="d-card">
+          <div class="d-card-title" style="justify-content:center">Career readiness</div>
+          <div class="score-display">
+            <div class="score-circle" id="dashScoreCircle" style="--p:0%"><div class="score-inner"><div class="score-num" id="dashReadinessNum">—</div><div class="score-lbl">readiness</div></div></div>
+            <div style="font-size:.82rem;color:var(--muted);margin-bottom:.75rem">Based on your latest gap analysis</div>
+            <div id="dashReadinessMsg" style="background:var(--violet-soft);border:1px solid var(--border2);border-radius:8px;padding:10px 14px;font-size:.82rem;color:var(--violet);font-weight:500">Run an analysis to see your readiness score.</div>
+          </div>
+        </div>
+        <div class="d-card">
+          <div class="d-card-title">Recent activity</div>
+          <div id="dashActivity"><div style="text-align:center;padding:1.5rem;color:var(--muted);font-size:.88rem">Your actions will appear here.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PROFILE -->
+<div class="page" id="page-profile">
+  <div class="profile-wrap">
+    <div class="profile-hero">
+      <div class="p-avatar" id="pAvatar"></div>
+      <div style="flex:1;min-width:0">
+        <div class="p-name"></div>
+        <div class="p-email"></div>
+        <div class="p-badges">
+          <span class="p-badge" id="pBadgeTarget"><i class="ti ti-map-2"></i> No target career set</span>
+          <span class="p-badge"><i class="ti ti-star"></i> <span id="pBadgeReady">— readiness</span></span>
+        </div>
+      </div>
+      <input type="file" id="photoInput" accept="image/*" style="display:none" onchange="changePhoto(event)"/>
+      <button class="btn btn-ghost btn-sm" onclick="document.getElementById('photoInput').click()"><i class="ti ti-camera"></i> Change photo</button>
+    </div>
+
+    <div class="p-card">
+      <div class="p-card-title">Personal information</div>
+      <div class="form-row">
+        <div class="form-group"><label class="form-label">First name</label><input class="form-control" id="pfFirst" placeholder="First name"/></div>
+        <div class="form-group"><label class="form-label">Last name</label><input class="form-control" id="pfLast" placeholder="Last name"/></div>
+        <div class="form-group"><label class="form-label">Email address</label><input class="form-control" id="pfEmail" type="email" placeholder="you@example.com"/></div>
+        <div class="form-group"><label class="form-label">Phone</label><input class="form-control" id="pfPhone" placeholder="+91 …"/></div>
+        <div class="form-group"><label class="form-label">College / Institution</label><input class="form-control" id="pfCollege" placeholder="Your college"/></div>
+        <div class="form-group"><label class="form-label">Course</label><input class="form-control" id="pfCourse" placeholder="e.g. BCA"/></div>
+      </div>
+      <div class="form-group"><label class="form-label">Bio</label><textarea class="form-control" id="pfBio" rows="3" style="resize:vertical" placeholder="A short note about you (optional)"></textarea></div>
+      <div style="display:flex;gap:10px;margin-top:.25rem">
+        <button class="btn btn-primary" onclick="saveProfile()"><i class="ti ti-check"></i> Save changes</button>
+        <button class="btn btn-outline" onclick="applyProfile()">Discard</button>
+      </div>
+    </div>
+
+    <div class="p-card">
+      <div class="p-card-title">Career preferences</div>
+      <div class="form-row">
+        <div class="form-group"><label class="form-label">Target career</label><select class="form-control" id="prefCareer"></select></div>
+        <div class="form-group"><label class="form-label">Experience level</label><select class="form-control" id="prefExp"><option>Beginner</option><option>Intermediate</option><option>Advanced</option></select></div>
+        <div class="form-group"><label class="form-label">Daily learning time</label><select class="form-control" id="prefTime"><option>1–2 hours</option><option>3–4 hours</option><option>5+ hours</option></select></div>
+        <div class="form-group"><label class="form-label">Goal</label><select class="form-control" id="prefGoal"><option>Get a job</option><option>Freelancing</option><option>Build a startup</option></select></div>
+      </div>
+      <button class="btn btn-primary" onclick="savePreferences()"><i class="ti ti-check"></i> Update preferences</button>
+    </div>
+
+    <div class="p-card">
+      <div class="p-card-title">Account actions</div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <button class="btn btn-outline btn-sm" onclick="openChangePw()"><i class="ti ti-lock"></i> Change password</button>
+        <button class="btn btn-outline btn-sm" onclick="exportPDF()"><i class="ti ti-file-download"></i> Download my report</button>
+        <button class="btn btn-outline btn-sm" onclick="openNotifs()"><i class="ti ti-bell"></i> Notification settings</button>
+        <button class="btn btn-danger btn-sm" onclick="openDelete()"><i class="ti ti-trash"></i> Delete account</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Change password modal -->
+<div class="modal-overlay" id="modalChangePw" onclick="if(event.target===this)closeModal('modalChangePw')">
+  <div class="modal-box">
+    <div class="modal-title">Change password</div>
+    <div class="modal-sub">Enter your current password and set a new one.</div>
+    <div class="form-group"><label class="form-label">Current password</label><input class="form-control" id="cpCurrent" type="password"/></div>
+    <div class="form-group"><label class="form-label">New password</label><input class="form-control" id="cpNew" type="password" minlength="6"/></div>
+    <div class="form-group"><label class="form-label">Confirm new password</label><input class="form-control" id="cpNew2" type="password" minlength="6"/></div>
+    <div class="modal-actions">
+      <button class="btn btn-outline btn-sm" onclick="closeModal('modalChangePw')">Cancel</button>
+      <button class="btn btn-primary btn-sm" onclick="submitChangePw()"><i class="ti ti-check"></i> Update password</button>
+    </div>
+  </div>
+</div>
+
+<!-- Notifications modal -->
+<div class="modal-overlay" id="modalNotifs" onclick="if(event.target===this)closeModal('modalNotifs')">
+  <div class="modal-box">
+    <div class="modal-title">Notification settings</div>
+    <div class="modal-sub">Choose what you'd like to be notified about.</div>
+    <div id="notifList"></div>
+    <div class="modal-actions">
+      <button class="btn btn-outline btn-sm" onclick="closeModal('modalNotifs')">Cancel</button>
+      <button class="btn btn-primary btn-sm" onclick="saveNotifs()"><i class="ti ti-check"></i> Save preferences</button>
+    </div>
+  </div>
+</div>
+
+<!-- Delete confirm modal -->
+<div class="modal-overlay" id="modalDelete" onclick="if(event.target===this)closeModal('modalDelete')">
+  <div class="modal-box">
+    <div class="modal-title" style="color:var(--coral)">Delete your account?</div>
+    <div class="modal-sub">This will permanently erase your profile, saved careers, activity log and quiz history from this device. This cannot be undone.</div>
+    <div class="form-group"><label class="form-label">Type <strong style="color:var(--coral)">DELETE</strong> to confirm</label><input class="form-control" id="delConfirm" placeholder="DELETE"/></div>
+    <div class="modal-actions">
+      <button class="btn btn-outline btn-sm" onclick="closeModal('modalDelete')">Cancel</button>
+      <button class="btn btn-danger btn-sm" onclick="confirmDelete()"><i class="ti ti-trash"></i> Delete account</button>
+    </div>
+  </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>

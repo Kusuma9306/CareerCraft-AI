@@ -1,6 +1,6 @@
 # CareerCraft-AI
 CareerCraft AI is an intelligent and  responsive career guidance web application built using HTML, CSS, and JavaScript  that helps students discover suitable career paths, identify skill gaps, receive personalized learning roadmaps, and explore project recommendations based on their interests and skills.
-# CareerCraft 
+# CareerCraft-AI
 
 **Your strategic career command center** — discover careers, analyse skill gaps, get AI-powered recommendations, and track your job readiness, all in one place.
 

@@ -52,7 +52,7 @@ Since this is a fully frontend, static project with no build step, you can run i
    ```
 2. Navigate into the project folder:
    ```bash
-   cd careercraft
+   cd CareerCraft-AI
    ```
 3. Open `index.html` directly in your browser, or serve it locally:
    ```bash

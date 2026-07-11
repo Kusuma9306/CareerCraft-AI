@@ -63,23 +63,22 @@ Since this is a fully frontend, static project with no build step, you can run i
 
 No installation, dependencies, or backend setup required — everything runs client-side.
 
-## Screenshots
+## 📸 Screenshots
 
 ### Login Page
-![Login](screenshots/login.png)
+![Login](login.png)
 
 ### Home Page
-![Home](screenshots/home.png)
+![Home](home.png)
 
 ### Explore Page
-![Explore](screenshots/explore.png)
+![Explore](explore.png)
 
 ### Dashboard
-![Dashboard](screenshots/dashboard.png)
+![Dashboard](dashboard.png)
 
 ### Profile Page
-![Profile](screenshots/profile.png)
-
+![Profile](profile.png)
 ## Pages
 
 | Page | Description |

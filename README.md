@@ -2,8 +2,6 @@
 
 **Your strategic career command center** — discover careers, analyse skill gaps, get AI-powered recommendations, and track your job readiness, all in one place.
 
- **Live Demo:**https://kusuma9306.github.io/CareerCraft-AI/
-
 ![Status](https://img.shields.io/badge/status-active-9B7BFF)
 ![Frontend](https://img.shields.io/badge/frontend-HTML%20%7C%20CSS%20%7C%20JS-22D3EE)
 
@@ -63,7 +61,7 @@ Since this is a fully frontend, static project with no build step, you can run i
 
 No installation, dependencies, or backend setup required — everything runs client-side.
 
-## 📸 Screenshots
+## Screenshots
 
 ### Login Page
 ![Login](images/login.png)

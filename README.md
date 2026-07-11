@@ -5,11 +5,11 @@
 ![Status](https://img.shields.io/badge/status-active-9B7BFF)
 ![Frontend](https://img.shields.io/badge/frontend-HTML%20%7C%20CSS%20%7C%20JS-22D3EE)
 
-## ✨ Overview
+## Overview
 
 CareerCraft is a frontend web application built for students who feel lost about "what career should I choose?" It brings career discovery, skill-gap analysis, project recommendations, and an AI mentor into a single, focused workspace — with a dark, cosmic-themed UI.
 
-## 🧩 Features
+## Features
 
 - **Career Explorer** — Browse 20+ in-demand career paths with required skills, salaries, and learning roadmaps, filterable by category (Technology, Data & AI, Design, Business, Security).
 - **Skill Gap Analyser** — Pick a target career, tick the skills you already have, and instantly see a personalised gap report.
@@ -23,7 +23,7 @@ CareerCraft is a frontend web application built for students who feel lost about
 - **Profile & Account Management** — Editable profile, career preferences, password change, notification settings, and account deletion.
 - **PDF Export** — Download a personalised career readiness report as a PDF.
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 - **HTML5 / CSS3** — Structure and dark cosmic-themed styling
 - **JavaScript (Vanilla)** — All app logic and interactivity
@@ -32,7 +32,7 @@ CareerCraft is a frontend web application built for students who feel lost about
 - **Google Fonts** — Space Grotesk & Inter
 - **LocalStorage** — Client-side data persistence (no backend required)
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 CareerCraft/
@@ -42,7 +42,7 @@ CareerCraft/
 └── README.md
 ```
 
-## 🚀 Getting Started
+## Getting Started
 
 Since this is a fully frontend, static project with no build step, you can run it locally in seconds.
 
@@ -61,38 +61,56 @@ Since this is a fully frontend, static project with no build step, you can run i
 
 No installation, dependencies, or backend setup required — everything runs client-side.
 
-## 📸 Pages
+## Screenshots
+
+### Login Page
+![Login](screenshots/login.png)
+
+### Home Page
+![Home](screenshots/home.png)
+
+### Explore Page
+![Explore](screenshots/explore.png)
+
+### Dashboard
+![Dashboard](screenshots/dashboard.png)
+
+### Profile Page
+![Profile](screenshots/profile.png)
+
+## Pages
 
 | Page | Description |
 |------|-------------|
+| **Login** | Sign in with email/phone or create a new account |
 | **Home** | Landing page with hero section, feature highlights, and testimonials |
 | **Explore** | Core workspace with 8 tools (Careers, Skill Analyser, AI Recommendation, Projects, AI Assistant, Quiz, Saved, Compare) |
 | **Dashboard** | Personalised stats, skill progress, readiness score, and recent activity |
 | **Profile** | Personal info, career preferences, and account management |
 
-## 🎨 Design
+## Design
 
 CareerCraft uses a dark, violet/purple cosmic aesthetic inspired by RPG-style interfaces, aiming to feel less like a generic form-based tool and more like a personal strategic dashboard.
 
-## 🗺️ Roadmap
+## Roadmap
 
 - [ ] Backend integration for persistent, multi-device accounts
 - [ ] Real AI API integration for the mentor and recommendations
 - [ ] More career paths and expanded skill database
 - [ ] Mobile app version
 
-## 🤝 Contributing
+## Contributing
 
 Contributions, issues, and feature requests are welcome. Feel free to open an issue or submit a pull request.
 
-## 📄 License
+## License
 
 This project is open source and available under the [MIT License](LICENSE).
 
-## 👤 Author
+## Author
 
 Built by **Kusuma M** — BCA student passionate about web development and building practical, visually distinctive projects.
 
 ---
 
-⭐ If you find this project useful, consider giving it a star on GitHub!
+If you find this project useful, consider giving it a star on GitHub!
